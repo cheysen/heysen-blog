@@ -196,28 +196,28 @@ uglyURLs = false
     #     pre = "internal"
     #     post = "home"
     [[menu.main]]
-        pageref = "/archives/"
+        pageref = "heysen.xyz/archives/"
         name = "归档"
         weight = 2
-        pre = "internal"
+        pre = "external"
         post = "archive"
     [[menu.main]]
         pageref = "/categories/"
         name = "分类"
         weight = 3
-        pre = "internal"
+        pre = "external"
         post = "th"
     [[menu.main]]
         pageref = "/tags/"
         name = "标签"
         weight = 4
-        pre = "internal"
+        pre = "external"
         post = "tags"
     [[menu.main]]
         pageref = "/about/"
         name = "关于"
         weight = 5
-        pre = "internal"
+        pre = "external"
         post = "user-circle"
     [[menu.main]]
         weight = 6
