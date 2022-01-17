@@ -196,8 +196,8 @@ uglyURLs = false
     #     pre = "internal"
     #     post = "home"
     [[menu.main]]
-        pageref = "/posts/"
-        name = "文章"
+        pageref = "/archives/"
+        name = "archives"
         weight = 2
         pre = "internal"
         post = "archive"
@@ -321,7 +321,7 @@ uglyURLs = false
     homePoster = ""
     homeVideoWebm = ""
     homeVideoMp4 = ""
-    homeLogo = ""
+    homeLogo = "/icons/astronaut.jpg"
     homeLogoLink = ""
     homeTitle = ""
     homeMotto = ""
@@ -334,20 +334,20 @@ uglyURLs = false
     # 站点信息
 
     # 站点的 LOGO
-    siteLogo = "/icons/astronaut.jpg"
+    siteLogo = "/icons/forest.png"
     # 说明：用于 JSON-LD、Open Graph
 
     # 站点的描述
-    siteDescription = "MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。"
+    siteDescription = "cheysen的个人博客。"
     # 说明：用于 HTML 的头部元数据、JSON-LD、
     #      Open Graph、Atom、RSS
 
     # 站点的创建时间
-    siteCreatedTime = "1969-07-20T20:17:43+00:00"
+    siteCreatedTime = "2021-01-16T20:17:43+00:00"
     # 注意：请保持此格式，更改数字
 
     # 站点的推特帐号
-    siteTwitter = "reuixiy"
+    siteTwitter = "cheysen11"
     # 说明：用于 Twitter Cards
 
 
@@ -618,7 +618,7 @@ uglyURLs = false
     valineLang = "zh-cn"
     valineVisitor = false
     valineHighlight = true
-    valineAvatarForce = false
+    valineAvatarForce = true
     valineRecordIP = false
     valineServerURLs = ""
     valineEmojiCDN = ""
