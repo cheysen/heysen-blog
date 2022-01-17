@@ -196,13 +196,13 @@ uglyURLs = true
     #     pre = "internal"
     #     post = "home"
     [[menu.main]]
-        pageref = "/archives/"
+        pageref = "./archives/"
         name = "归档"
         weight = 2
         pre = "external"
         post = "archive"
     [[menu.main]]
-        pageref = "/categories/"
+        pageref = "./categories/"
         name = "分类"
         weight = 3
         pre = "internal"
