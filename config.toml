@@ -40,9 +40,9 @@ enableRobotsTXT = true
 paginate = 5
 
 # URL 相关
-disablePathToLower = false
+disablePathToLower = true
 relativeURLs = true
-uglyURLs = false
+uglyURLs = true
 
 # URL 结构
 [permalinks]
@@ -190,31 +190,31 @@ uglyURLs = false
 [menu]
     ## 菜单栏
     # [[menu.main]]
-    #     pageref = "/"
+    #     url = "/"
     #     name = "首页"
     #     weight = 1
     #     pre = "internal"
     #     post = "home"
     [[menu.main]]
-        pageref = "heysen.xyz/archives/"
+        url = "heysen.xyz/archives/"
         name = "归档"
         weight = 2
         pre = "external"
         post = "archive"
     [[menu.main]]
-        pageref = "/categories/"
+        url = "heysen.xyz/categories/"
         name = "分类"
         weight = 3
         pre = "external"
         post = "th"
     [[menu.main]]
-        pageref = "/tags/"
+        url = "heysen.xyz/tags/"
         name = "标签"
         weight = 4
         pre = "external"
         post = "tags"
     [[menu.main]]
-        pageref = "/about/"
+        url = "heysen.xyz/about/"
         name = "关于"
         weight = 5
         pre = "external"
@@ -553,7 +553,7 @@ uglyURLs = false
 
     # 说明：仅在生产环境（production）下渲染
 
-    enableServiceWorker = false
+    enableServiceWorker = true
 
 
     ######################################

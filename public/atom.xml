@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">Cheysen&#39;s Blog</title>
     <subtitle type="html">cheysen的个人博客。</subtitle>
-    <updated>2022-01-18T01:58:02&#43;08:00</updated>
+    <updated>2022-01-18T02:05:17&#43;08:00</updated>
     <id>https://heysen.xyz/</id>
     <link rel="alternate" type="text/html" href="https://heysen.xyz/" />
     <link rel="self" type="application/atom&#43;xml" href="https://heysen.xyz/atom.xml" />
@@ -18,8 +18,8 @@
     <generator uri="https://gohugo.io/" version="0.92.0">Hugo</generator>
         <entry>
             <title type="text">Java枚举类型介绍和使用</title>
-            <link rel="alternate" type="text/html" href="https://heysen.xyz/posts/java%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/" />
-            <id>https://heysen.xyz/posts/java%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/</id>
+            <link rel="alternate" type="text/html" href="https://heysen.xyz/posts/Java%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8.html" />
+            <id>https://heysen.xyz/posts/Java%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8.html</id>
             <updated>2022-01-18T00:22:14&#43;08:00</updated>
             <published>2019-07-22T23:11:15&#43;08:00</published>
             <author>
@@ -1233,7 +1233,7 @@
                             
                             
                             
-                                <category scheme="https://heysen.xyz/categories/%E7%BC%96%E7%A8%8B/" term="编程" label="编程" />
+                                <category scheme="https://heysen.xyz/categories/%E7%BC%96%E7%A8%8B.html" term="编程" label="编程" />
                             
                         
                     
@@ -1243,7 +1243,7 @@
                             
                             
                             
-                                <category scheme="https://heysen.xyz/tags/java/" term="Java" label="Java" />
+                                <category scheme="https://heysen.xyz/tags/Java.html" term="Java" label="Java" />
                             
                         
                     
@@ -1253,8 +1253,8 @@
     
         <entry>
             <title type="text">浅谈XSS</title>
-            <link rel="alternate" type="text/html" href="https://heysen.xyz/posts/%E6%B5%85%E8%B0%88xss/" />
-            <id>https://heysen.xyz/posts/%E6%B5%85%E8%B0%88xss/</id>
+            <link rel="alternate" type="text/html" href="https://heysen.xyz/posts/%E6%B5%85%E8%B0%88XSS.html" />
+            <id>https://heysen.xyz/posts/%E6%B5%85%E8%B0%88XSS.html</id>
             <updated>2022-01-18T00:21:20&#43;08:00</updated>
             <published>2019-05-22T10:19:56&#43;08:00</published>
             <author>
@@ -1374,7 +1374,7 @@
                             
                             
                             
-                                <category scheme="https://heysen.xyz/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" term="网络安全" label="网络安全" />
+                                <category scheme="https://heysen.xyz/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8.html" term="网络安全" label="网络安全" />
                             
                         
                     
@@ -1384,7 +1384,7 @@
                             
                             
                             
-                                <category scheme="https://heysen.xyz/tags/xss/" term="XSS" label="XSS" />
+                                <category scheme="https://heysen.xyz/tags/XSS.html" term="XSS" label="XSS" />
                             
                         
                     
@@ -1394,8 +1394,8 @@
     
         <entry>
             <title type="text">简单理解Java内存模型</title>
-            <link rel="alternate" type="text/html" href="https://heysen.xyz/posts/%E7%90%86%E8%A7%A3java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" />
-            <id>https://heysen.xyz/posts/%E7%90%86%E8%A7%A3java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</id>
+            <link rel="alternate" type="text/html" href="https://heysen.xyz/posts/%E7%90%86%E8%A7%A3Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html" />
+            <id>https://heysen.xyz/posts/%E7%90%86%E8%A7%A3Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.html</id>
             <updated>2022-01-18T00:21:18&#43;08:00</updated>
             <published>2019-05-08T13:22:25&#43;08:00</published>
             <author>
@@ -1563,7 +1563,7 @@
                             
                             
                             
-                                <category scheme="https://heysen.xyz/categories/%E7%BC%96%E7%A8%8B/" term="编程" label="编程" />
+                                <category scheme="https://heysen.xyz/categories/%E7%BC%96%E7%A8%8B.html" term="编程" label="编程" />
                             
                         
                     
@@ -1573,7 +1573,7 @@
                             
                             
                             
-                                <category scheme="https://heysen.xyz/tags/java/" term="Java" label="Java" />
+                                <category scheme="https://heysen.xyz/tags/Java.html" term="Java" label="Java" />
                             
                         
                     
