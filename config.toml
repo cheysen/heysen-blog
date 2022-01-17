@@ -35,7 +35,7 @@ enableGitInfo = false
 
 # 是否生成 robots.txt 文件
 enableRobotsTXT = true
-
+canonifyURLs = true
 # 每一分页的文章数（仅对「文章摘要」首页布局有效）
 paginate = 5
 
@@ -190,34 +190,34 @@ uglyURLs = true
 [menu]
     ## 菜单栏
     # [[menu.main]]
-    #     url = "/"
+    #     pageref = "/"
     #     name = "首页"
     #     weight = 1
     #     pre = "internal"
     #     post = "home"
     [[menu.main]]
-        url = "heysen.xyz/archives/"
+        pageref = "/archives/"
         name = "归档"
         weight = 2
         pre = "external"
         post = "archive"
     [[menu.main]]
-        url = "heysen.xyz/categories/"
+        pageref = "/categories/"
         name = "分类"
         weight = 3
-        pre = "external"
+        pre = "internal"
         post = "th"
     [[menu.main]]
-        url = "heysen.xyz/tags/"
+        pageref = "/tags/"
         name = "标签"
         weight = 4
-        pre = "external"
+        pre = "internal"
         post = "tags"
     [[menu.main]]
-        url = "heysen.xyz/about/"
+        pageref = "/about/"
         name = "关于"
         weight = 5
-        pre = "external"
+        pre = "internal"
         post = "user-circle"
     [[menu.main]]
         weight = 6
