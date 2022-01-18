@@ -35,14 +35,14 @@ enableGitInfo = false
 
 # 是否生成 robots.txt 文件
 enableRobotsTXT = true
-canonifyURLs = true
+
 # 每一分页的文章数（仅对「文章摘要」首页布局有效）
 paginate = 5
 
 # URL 相关
-disablePathToLower = true
-relativeURLs = true
-uglyURLs = true
+disablePathToLower = false
+relativeURLs = false
+uglyURLs = false
 
 # URL 结构
 [permalinks]
@@ -104,7 +104,7 @@ uglyURLs = true
     # 头像
     avatar = "/icons/astronaut.jpg"
     # 网站（默认值：baseURL）
-    website = "https://heysen.xyz/"
+    # website = "https://heysen.xyz/"
     # 推特
     twitter = "cheysen11"
 
@@ -196,22 +196,22 @@ uglyURLs = true
     #     pre = "internal"
     #     post = "home"
     [[menu.main]]
-        pageref = "./archives/"
+        pageref = "/archives/"
         name = "归档"
         weight = 2
         pre = "external"
         post = "archive"
     [[menu.main]]
-        pageref = "./categories/"
+        pageref = "/categories/"
         name = "分类"
         weight = 3
-        pre = "internal"
+        pre = "external"
         post = "th"
     [[menu.main]]
         pageref = "/tags/"
         name = "标签"
         weight = 4
-        pre = "internal"
+        pre = "external"
         post = "tags"
     [[menu.main]]
         pageref = "/about/"
@@ -225,10 +225,10 @@ uglyURLs = true
     [[menu.main]]
         weight = 7
         identifier = "lang-switcher"
-    # [[menu.main]]
-    #     weight = 8
-    #     identifier = "search"
-    #     post = "search"
+    [[menu.main]]
+        weight = 8
+        identifier = "search"
+        post = "search"
 
 
 
