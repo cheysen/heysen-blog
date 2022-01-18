@@ -153,8 +153,8 @@ uglyURLs = false
 # Hugo 的输出控制
 [outputs]
     page = ["HTML"]
-    # home = ["HTML", "SectionsAtom", "SectionsRSS", "SearchIndex", "Algolia"]
-    home = ["HTML", "SectionsAtom", "SectionsRSS"]
+    home = ["HTML", "SectionsAtom", "SectionsRSS", "SearchIndex", "Algolia"]
+    # home = ["HTML", "SectionsAtom", "SectionsRSS"]
     section = ["HTML"]
     taxonomy = ["HTML"]
     term = ["HTML"]
@@ -196,7 +196,7 @@ uglyURLs = false
     #    pre = "internal"
     #    post = "home"
     [[menu.main]]
-        url = "/posts/"
+        url = "/archives/"
         name = "归档"
         weight = 2
         pre = "internal"
@@ -711,7 +711,7 @@ uglyURLs = false
     # 注意：只支持 HSL 颜色值
 
     # 文章的内容宽度
-    postWidth = 36
+    postWidth = 50
     # 说明：如果留空（""），则用 42 作为默认值
     #      单位：em
 
@@ -1283,9 +1283,9 @@ uglyURLs = false
     enableHighlight = true
 
     # 是否开启竖直滚动
-    enableOverflowY = true
+    enableOverflowY = false
     # 最大高度
-    maxHeight = 20
+    maxHeight = 60
     # 单位：em
 
     # 是否开启复制
@@ -1351,7 +1351,7 @@ uglyURLs = false
 
     # 说明：需要开启 `SearchIndex` 的输出
 
-    enableLunrSearch = false
+    enableLunrSearch = true
     # 说明：https://lunrjs.com/
 
 
