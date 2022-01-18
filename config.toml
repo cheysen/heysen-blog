@@ -16,7 +16,7 @@ newContentEditor = ""
 
 # i18n
 defaultContentLanguage = "zh"
-defaultContentLanguageInSubdir = false
+defaultContentLanguageInSubdir = true
 
 # 是否复数化列表页面的标题
 pluralizeListTitles = false
@@ -41,7 +41,7 @@ paginate = 5
 
 # URL 相关
 disablePathToLower = false
-relativeURLs = false
+relativeURLs = true
 uglyURLs = false
 
 # URL 结构
@@ -199,19 +199,19 @@ uglyURLs = false
         pageref = "/archives/"
         name = "归档"
         weight = 2
-        pre = "external"
+        pre = "internal"
         post = "archive"
     [[menu.main]]
         pageref = "/categories/"
         name = "分类"
         weight = 3
-        pre = "external"
+        pre = "internal"
         post = "th"
     [[menu.main]]
         pageref = "/tags/"
         name = "标签"
         weight = 4
-        pre = "external"
+        pre = "internal"
         post = "tags"
     [[menu.main]]
         pageref = "/about/"
