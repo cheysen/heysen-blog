@@ -1,7 +1,7 @@
 ##########################################
 # 站点配置
 
-baseURL = "https://heysen.xyz/"
+baseURL = "https://heysen.xyz"
 title = "Cheysen's Blog"
 languageCode = "zh-CN"
 hasCJKLanguage = true
@@ -16,7 +16,7 @@ newContentEditor = ""
 
 # i18n
 defaultContentLanguage = "zh"
-defaultContentLanguageInSubdir = false
+defaultContentLanguageInSubdir = true
 
 # 是否复数化列表页面的标题
 pluralizeListTitles = false
@@ -35,19 +35,19 @@ enableGitInfo = false
 
 # 是否生成 robots.txt 文件
 enableRobotsTXT = true
-canonifyURLs = true
+
 # 每一分页的文章数（仅对「文章摘要」首页布局有效）
 paginate = 5
 
 # URL 相关
-disablePathToLower = true
-relativeURLs = true
-uglyURLs = true
+disablePathToLower = false
+relativeURLs = false
+uglyURLs = false
 
 # URL 结构
-[permalinks]
-    categories = "/categories/:slug/"
-    tags = "/tags/:slug/"
+#[permalinks]
+   # categories = "/categories/:slug/"
+   # tags = "/tags/:slug/"
 
 # 类别
 [taxonomies]
@@ -153,8 +153,8 @@ uglyURLs = true
 # Hugo 的输出控制
 [outputs]
     page = ["HTML"]
-    # home = ["HTML", "SectionsAtom", "SectionsRSS", "SearchIndex", "Algolia"]
-    home = ["HTML", "SectionsAtom", "SectionsRSS"]
+    home = ["HTML", "SectionsAtom", "SectionsRSS", "SearchIndex", "Algolia"]
+    # home = ["HTML", "SectionsAtom", "SectionsRSS"]
     section = ["HTML"]
     taxonomy = ["HTML"]
     term = ["HTML"]
@@ -190,11 +190,11 @@ uglyURLs = true
 [menu]
     ## 菜单栏
     # [[menu.main]]
-    #     pageref = "/"
-    #     name = "首页"
-    #     weight = 1
-    #     pre = "internal"
-    #     post = "home"
+    #    pageref = "/"
+    #    name = "首页"
+    #    weight = 1
+    #    pre = "internal"
+    #    post = "home"
     [[menu.main]]
         url = "/archives/"
         name = "归档"
@@ -222,13 +222,13 @@ uglyURLs = true
     [[menu.main]]
         weight = 6
         identifier = "theme-switcher"
+    # [[menu.main]]
+    #    weight = 7
+    #    identifier = "lang-switcher"
     [[menu.main]]
         weight = 7
-        identifier = "lang-switcher"
-    # [[menu.main]]
-    #     weight = 8
-    #     identifier = "search"
-    #     post = "search"
+        identifier = "search"
+        post = "search"
 
 
 
@@ -294,7 +294,7 @@ uglyURLs = true
     # 说明：对弹性布局的顶栏无效
 
     # 是否按文章分区高亮当前菜单项
-    activeInSection = false
+    activeInSection = true
     # 说明：如果开启，那么当某一文章的分区名是某
     #      一菜单项中的 `url` 时，该文章页面中
     #      的该菜单项也会被高亮
@@ -711,7 +711,7 @@ uglyURLs = true
     # 注意：只支持 HSL 颜色值
 
     # 文章的内容宽度
-    postWidth = 36
+    postWidth = 50
     # 说明：如果留空（""），则用 42 作为默认值
     #      单位：em
 
@@ -798,7 +798,7 @@ uglyURLs = true
     # 文章目录
 
     # 是否开启（全局设置）
-    enableTOC = false
+    enableTOC = true
     # 说明：文章的 Front Matter 中的 `toc`
     #      的优先级高于此处
 
@@ -806,7 +806,7 @@ uglyURLs = true
     displayTOCTitle = true
 
     # 是否显示数字（全局设置）
-    displayTOCNum = true
+    displayTOCNum = false
     # 说明：文章的 Front Matter 中的 `tocNum`
     #      的优先级高于此处
 
@@ -968,7 +968,7 @@ uglyURLs = true
     ######################################
     ## 行间距
 
-    lineHeight = 2
+    lineHeight = 1.5
     # 说明：只会应用到文章的段落和目录
 
     ######################################
@@ -1283,9 +1283,9 @@ uglyURLs = true
     enableHighlight = true
 
     # 是否开启竖直滚动
-    enableOverflowY = true
+    enableOverflowY = false
     # 最大高度
-    maxHeight = 20
+    maxHeight = 60
     # 单位：em
 
     # 是否开启复制
@@ -1351,7 +1351,7 @@ uglyURLs = true
 
     # 说明：需要开启 `SearchIndex` 的输出
 
-    enableLunrSearch = false
+    enableLunrSearch = true
     # 说明：https://lunrjs.com/
 
 
