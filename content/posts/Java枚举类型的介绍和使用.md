@@ -4,6 +4,7 @@ draft: false
 title: "Java枚举类型介绍和使用"
 tags: ["Java"]
 categories: ["编程"]
+lightgallery: true
 ---
 ### 1. 枚举类型的介绍
 
@@ -74,7 +75,8 @@ public enum Season implements Info{
 
 可以看到该枚举类编译后的class文件，其中还包括了四个枚举值对应的class文件，而且其后还带有序号。在枚举实例创建时会给每个枚举值指定一个整形常量值（序号），若没有显示指定，则 整形常量值从0开始递增。这其实是与父类Enum有关，后面会介绍。
 
-![](https://cdn.heysen.xyz/201907222345_571.png)
+{{< image src="https://cdn.heysen.xyz/201907222345_571.png" >}}
+
 
 下面是利用javap工具查看Season.java经过编译后的字节码（请忽略乱码--.--）:
 
