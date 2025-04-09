@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>树 - 标签 - H2oLo</title>
+        <link>https://heysen.xyz/tags/%E6%A0%91/</link>
+        <description>树 - 标签 - H2oLo</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 09 Apr 2025 15:11:15 &#43;0800</lastBuildDate><atom:link href="https://heysen.xyz/tags/%E6%A0%91/" rel="self" type="application/rss+xml" /><item>
+    <title>B树与B&#43;树</title>
+    <link>https://heysen.xyz/b%E6%A0%91%E4%B8%8Eb-%E6%A0%91/</link>
+    <pubDate>Wed, 09 Apr 2025 15:11:15 &#43;0800</pubDate>
+    <author> </author>
+    <guid>https://heysen.xyz/b%E6%A0%91%E4%B8%8Eb-%E6%A0%91/</guid>
+    <description><![CDATA[多路查找树(m-way search tree) 多路查找树是一种用来高效搜索或检索数据的数据结构。m表示最大子节点数。如二叉树也叫2-way查找树。多路查找树主要]]></description>
+</item></channel>
+</rss>

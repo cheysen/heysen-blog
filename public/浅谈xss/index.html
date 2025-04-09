@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>浅谈XSS - H2oLo</title><meta name="Description" content="cheysen的个人博客"><meta property="og:title" content="浅谈XSS" />
+<meta property="og:description" content="1. XSS简介 跨站脚本(Cross Site Script)为了避免与CSS混淆,简称XSS。XSS是指攻击者利用网站没有对用户提交数据进行转义处理或者" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heysen.xyz/%E6%B5%85%E8%B0%88xss/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-05-22T10:19:56+08:00" />
+<meta property="article:modified_time" content="2019-05-22T10:19:56+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="浅谈XSS"/>
+<meta name="twitter:description" content="1. XSS简介 跨站脚本(Cross Site Script)为了避免与CSS混淆,简称XSS。XSS是指攻击者利用网站没有对用户提交数据进行转义处理或者"/>
+<meta name="application-name" content="H2oLo">
+<meta name="apple-mobile-web-app-title" content="H2oLo"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heysen.xyz/%E6%B5%85%E8%B0%88xss/" /><link rel="prev" href="https://heysen.xyz/%E7%90%86%E8%A7%A3java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" /><link rel="next" href="https://heysen.xyz/java%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "浅谈XSS",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/heysen.xyz\/%E6%B5%85%E8%B0%88xss\/"
+        },"genre": "posts","keywords": "XSS","wordcount":  1650 ,
+        "url": "https:\/\/heysen.xyz\/%E6%B5%85%E8%B0%88xss\/","datePublished": "2019-05-22T10:19:56+08:00","dateModified": "2019-05-22T10:19:56+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": " "
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="H2oLo"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/hydrogen.png"
+        data-srcset="/images/hydrogen.png, /images/hydrogen.png 1.5x, /images/hydrogen.png 2x"
+        data-sizes="auto"
+        alt="/images/hydrogen.png"
+        title="/images/hydrogen.png" /><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="H2oLo"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/hydrogen.png"
+        data-srcset="/images/hydrogen.png, /images/hydrogen.png 1.5x, /images/hydrogen.png 2x"
+        data-sizes="auto"
+        alt="/images/hydrogen.png"
+        title="/images/hydrogen.png" /><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">浅谈XSS</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-category"><a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"><i class="far fa-folder fa-fw"></i>网络安全</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-05-22">2019-05-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1650 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-xss简介">1. XSS简介</a></li>
+        <li><a href="#2-原理">2. 原理</a></li>
+        <li><a href="#3自动化xss">3.自动化XSS</a></li>
+        <li><a href="#4-如何预防">4. 如何预防</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="1-xss简介">1. XSS简介</h2>
+<p>跨站脚本(Cross Site Script)为了避免与CSS混淆,简称XSS。XSS是指攻击者利用网站没有对用户提交数据进行转义处理或者过滤不足的缺点，在输入框添加一些代码，嵌入到web页面中，使别的用户访问会执行相应的嵌入代码，从而盗取用户资料、利用用户身份进行某种动作或者对访问者进行病毒侵害的一种攻击方式。XSS又分为反射型、存储型和DOM-Based型。</p>
+<p>XSS的危害包括：</p>
+<ul>
+<li>
+<p>盗取用户Cookie</p>
+</li>
+<li>
+<p>DDOS客户端浏览器</p>
+</li>
+<li>
+<p>盗窃企业重要的具有商业价值的资料</p>
+</li>
+<li>
+<p>爆发web2.0蠕虫</p>
+</li>
+<li>
+<p>强制发送电子邮件</p>
+</li>
+<li>
+<p>网站挂马，钓鱼攻击</p>
+</li>
+<li>
+<p>劫持用户web行为甚至渗透内网</p>
+</li>
+</ul>
+<h2 id="2-原理">2. 原理</h2>
+<p>（1）反射型</p>
+<blockquote>
+<p>服务端返回脚本，客户端执行。如URL注入非法脚本，然后诱导用户点击该链接，但是一般浏览器都会有基本防御措施，自带拦截过滤；服务端返回的富文本中包含非法脚本，被直接展示。</p>
+</blockquote>
+<p>（2）存储型</p>
+<blockquote>
+<p>后台被动存储了非法脚本，并且前端直接展示。如发帖或留言中发出包含恶意代码的内容,其他用户访问该内容后,满足特定条件即触发,这种需要后台不过滤信息,并且前端展示时也不过滤信息。</p>
+</blockquote>
+<p>（3）DOM-Based型</p>
+<blockquote>
+<p>基于DOM或本地的XSS攻击。如wifi流量劫持、DNS劫持并直接返回钓鱼页面。本质是需要更改DOM，再排除自己攻击自己。某些反射型的攻击也能造成这个后果-通过url控制DOM。在传统的XSS中，恶意JavaScript脚本在页面加载时执行，而在基于DOM的XSS中，恶意JavaScript脚本在页面加载后的某个时刻执行。</p>
+</blockquote>
+<h2 id="3自动化xss">3.自动化XSS</h2>
+<p>Browser Exploitation Framework(BeEF),是目前强大的浏览器开源渗透测试框架,通过XSS漏洞配合JS脚本和Metasploit进行渗透。它是基于Ruby编写，支持图形化界面，操作简单。
+<a class="lightgallery" href="https://cdn.heysen.xyz/201905022124_805.jpg" title="https://cdn.heysen.xyz/201905022124_805.jpg" data-thumbnail="https://cdn.heysen.xyz/201905022124_805.jpg">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://cdn.heysen.xyz/201905022124_805.jpg"
+            data-srcset="https://cdn.heysen.xyz/201905022124_805.jpg, https://cdn.heysen.xyz/201905022124_805.jpg 1.5x, https://cdn.heysen.xyz/201905022124_805.jpg 2x"
+            data-sizes="auto"
+            alt="https://cdn.heysen.xyz/201905022124_805.jpg" />
+    </a></p>
+<p>Kali linux已经自带BeEF,另外我使用一个开源的靶机OWASP Broken Web Apps来练习。</p>
+<p>在靶机的低安全级别下执行一个存储型的XSS：
+<a class="lightgallery" href="https://cdn.heysen.xyz/201905022117_458.jpg" title="https://cdn.heysen.xyz/201905022117_458.jpg" data-thumbnail="https://cdn.heysen.xyz/201905022117_458.jpg">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://cdn.heysen.xyz/201905022117_458.jpg"
+            data-srcset="https://cdn.heysen.xyz/201905022117_458.jpg, https://cdn.heysen.xyz/201905022117_458.jpg 1.5x, https://cdn.heysen.xyz/201905022117_458.jpg 2x"
+            data-sizes="auto"
+            alt="https://cdn.heysen.xyz/201905022117_458.jpg" />
+    </a></p>
+<p>然后使用win10的Google浏览器访问靶机的相应被注入脚本的页面后，BeEF中的记录：
+<a class="lightgallery" href="https://cdn.heysen.xyz/201905022119_667.png" title="https://cdn.heysen.xyz/201905022119_667.png" data-thumbnail="https://cdn.heysen.xyz/201905022119_667.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://cdn.heysen.xyz/201905022119_667.png"
+            data-srcset="https://cdn.heysen.xyz/201905022119_667.png, https://cdn.heysen.xyz/201905022119_667.png 1.5x, https://cdn.heysen.xyz/201905022119_667.png 2x"
+            data-sizes="auto"
+            alt="https://cdn.heysen.xyz/201905022119_667.png" />
+    </a></p>
+<p>之后就可以使用beef控制用户的浏览器进行多种操作（比如钓鱼），但是这里并没有win10的记录，原因是chrome对该XSS进行了过滤。
+<a class="lightgallery" href="https://cdn.heysen.xyz/201905022121_317.png" title="https://cdn.heysen.xyz/201905022121_317.png" data-thumbnail="https://cdn.heysen.xyz/201905022121_317.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://cdn.heysen.xyz/201905022121_317.png"
+            data-srcset="https://cdn.heysen.xyz/201905022121_317.png, https://cdn.heysen.xyz/201905022121_317.png 1.5x, https://cdn.heysen.xyz/201905022121_317.png 2x"
+            data-sizes="auto"
+            alt="https://cdn.heysen.xyz/201905022121_317.png" />
+    </a></p>
+<h2 id="4-如何预防">4. 如何预防</h2>
+<p>（1）编码，转义用户输入，编码可在前端和后端中进行。常见的如下图的HTML转义
+<a class="lightgallery" href="https://cdn.heysen.xyz/201905022217_212.png" title="https://cdn.heysen.xyz/201905022217_212.png" data-thumbnail="https://cdn.heysen.xyz/201905022217_212.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://cdn.heysen.xyz/201905022217_212.png"
+            data-srcset="https://cdn.heysen.xyz/201905022217_212.png, https://cdn.heysen.xyz/201905022217_212.png 1.5x, https://cdn.heysen.xyz/201905022217_212.png 2x"
+            data-sizes="auto"
+            alt="https://cdn.heysen.xyz/201905022217_212.png" />
+    </a></p>
+<p>但是编码并不适用所有情况，比如当用户需要提供一个URL或者编写用户配置文件时，对输入编码是不友好的，不应对用户的自定义配置做限制，所以需要使用验证。</p>
+<p>（2）验证，过滤用户输入。有两种实现方式</p>
+<ul>
+<li>
+<p>分类策略，使用白名单或黑名单分类</p>
+</li>
+<li>
+<p>验证结果，拒绝或删除不合法的输入</p>
+</li>
+</ul>
+<p>（3）CSP内容安全策略（CSP）</p>
+<p>CSP用于约束浏览器只能使用从可信来源下载的资源。资源是页面引用的脚本，样式表，图像或其他类型的文件。这样即使攻击者成功将恶意内容注入到网站，CSP也可以防止它被执行。</p>
+<p>CSP可用于执行以下规则：</p>
+<ul>
+<li>
+<p>没有不受信任的来源。外部资源只能从一组明确定义的可信来源加载。</p>
+</li>
+<li>
+<p>没有内联资源。不会评估内联JavaScript和CSS。</p>
+</li>
+<li>
+<p>无法使用JavaScript eval函数。</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="err">Content‑Security‑Policy:
+</span><span class="err">    script‑src &#39;self&#39; scripts.example.com;
+</span><span class="err">    media‑src &#39;none&#39;;
+</span><span class="err">    img‑src *;
+</span><span class="err">    default‑src &#39;self&#39; http://*.example.com
+</span></code></pre></td></tr></table>
+</div>
+</div><p>以上CSP表明脚本只能从提供页面的主机和scripts.example.com下载。</p>
+<p>无法从任何地方下载音频和视频文件。可以从任何主机下载图像文件。</p>
+<p>所有其他资源只能从提供该页面的主机和example.com的任何子域下载。</p>
+<p>(4) 其他方法</p>
+<ul>
+<li>Cookie设置http-only。http-only标志可以防止cookie被“读取”，但不能防止被“写”,已证明有些浏览器的http-only标记可以被JavaScript写入覆盖，而这种覆盖可能被攻击者利用发动session fixation攻击。</li>
+<li>WAF,大多数使用规则匹配,也能被绕过。</li>
+<li><a href="https://link.zhihu.com/?target=https%3A//www.owasp.org/index.php/Security_Headers" target="_blank" rel="noopener noreffer">X-XSS-Protection</a>也有助于在一些浏览器中防止某些XSS，但在某些情况下可以被绕过。</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2019-05-22</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E6%B5%85%E8%B0%88xss/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/xss/">XSS</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E7%90%86%E8%A7%A3java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" class="prev" rel="prev" title="简单理解Java内存模型"><i class="fas fa-angle-left fa-fw"></i>简单理解Java内存模型</a>
+            <a href="/java%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/" class="next" rel="next" title="Java枚举类型介绍和使用">Java枚举类型介绍和使用<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">H2oLo</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 - 2025</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/" target="_blank">湘ICP备19007912号</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"H2oLo","id-2":"H2oLo"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

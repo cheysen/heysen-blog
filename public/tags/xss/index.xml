@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>XSS - 标签 - H2oLo</title>
+        <link>https://heysen.xyz/tags/xss/</link>
+        <description>XSS - 标签 - H2oLo</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 22 May 2019 10:19:56 &#43;0800</lastBuildDate><atom:link href="https://heysen.xyz/tags/xss/" rel="self" type="application/rss+xml" /><item>
+    <title>浅谈XSS</title>
+    <link>https://heysen.xyz/%E6%B5%85%E8%B0%88xss/</link>
+    <pubDate>Wed, 22 May 2019 10:19:56 &#43;0800</pubDate>
+    <author> </author>
+    <guid>https://heysen.xyz/%E6%B5%85%E8%B0%88xss/</guid>
+    <description><![CDATA[1. XSS简介 跨站脚本(Cross Site Script)为了避免与CSS混淆,简称XSS。XSS是指攻击者利用网站没有对用户提交数据进行转义处理或者]]></description>
+</item></channel>
+</rss>

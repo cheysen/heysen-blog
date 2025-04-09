@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Java枚举类型介绍和使用 - H2oLo</title><meta name="Description" content="cheysen的个人博客"><meta property="og:title" content="Java枚举类型介绍和使用" />
+<meta property="og:description" content="1. 枚举类型的介绍 枚举类型是一种特殊的数据类型，它使得变量成为一组预定义常量。所以在需要表示一组固定常量时应尽量使用枚举类型。通过关键字enu" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://heysen.xyz/java%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-07-22T23:11:15+08:00" />
+<meta property="article:modified_time" content="2019-07-22T23:11:15+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java枚举类型介绍和使用"/>
+<meta name="twitter:description" content="1. 枚举类型的介绍 枚举类型是一种特殊的数据类型，它使得变量成为一组预定义常量。所以在需要表示一组固定常量时应尽量使用枚举类型。通过关键字enu"/>
+<meta name="application-name" content="H2oLo">
+<meta name="apple-mobile-web-app-title" content="H2oLo"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://heysen.xyz/java%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/" /><link rel="prev" href="https://heysen.xyz/%E6%B5%85%E8%B0%88xss/" /><link rel="next" href="https://heysen.xyz/b%E6%A0%91%E4%B8%8Eb-%E6%A0%91/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Java枚举类型介绍和使用",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/heysen.xyz\/java%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8\/"
+        },"genre": "posts","keywords": "Java","wordcount":  6436 ,
+        "url": "https:\/\/heysen.xyz\/java%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8\/","datePublished": "2019-07-22T23:11:15+08:00","dateModified": "2019-07-22T23:11:15+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": " "
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="H2oLo"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/hydrogen.png"
+        data-srcset="/images/hydrogen.png, /images/hydrogen.png 1.5x, /images/hydrogen.png 2x"
+        data-sizes="auto"
+        alt="/images/hydrogen.png"
+        title="/images/hydrogen.png" /><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="H2oLo"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="/images/hydrogen.png"
+        data-srcset="/images/hydrogen.png, /images/hydrogen.png 1.5x, /images/hydrogen.png 2x"
+        data-sizes="auto"
+        alt="/images/hydrogen.png"
+        title="/images/hydrogen.png" /><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Java枚举类型介绍和使用</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-category"><a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="far fa-folder fa-fw"></i>编程</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-07-22">2019-07-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6436 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1-枚举类型的介绍">1. 枚举类型的介绍</a>
+              <ul>
+                <li><a href="#11-枚举类的特性">1.1 枚举类的特性</a></li>
+                <li><a href="#12-枚举类的原理">1.2 枚举类的原理</a></li>
+                <li><a href="#13-javalangenum">1.3 java.lang.Enum</a></li>
+              </ul>
+            </li>
+            <li><a href="#2-枚举类的使用">2. 枚举类的使用</a>
+              <ul>
+                <li><a href="#21-定义">2.1 定义</a></li>
+                <li><a href="#22-结合switch">2.2 结合Switch</a></li>
+                <li><a href="#23-valueof方法">2.3 valueOf方法</a></li>
+                <li><a href="#24-values和其他方法">2.4 values()和其他方法</a></li>
+                <li><a href="#25-使用接口组织枚举">2.5 使用接口组织枚举</a></li>
+                <li><a href="#26-enumset和enummap">2.6 EnumSet和EnumMap</a></li>
+                <li><a href="#27-使用枚举实现单例模式">2.7 使用枚举实现单例模式</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="1-枚举类型的介绍">1. 枚举类型的介绍</h3>
+<p>枚举类型是一种特殊的数据类型，它使得变量成为一组预定义常量。所以在需要表示一组固定常量时应尽量使用枚举类型。通过关键字enum来定义枚举类，它和普通类一样可以有构造器、成员变量、方法。</p>
+<h4 id="11-枚举类的特性">1.1 枚举类的特性</h4>
+<ul>
+<li>所有的枚举类都隐式的继承<code>java.lang.Enum</code>，Java不允许多继承，所以枚举类不能再继承其他任何类，但可以实现接口</li>
+<li>枚举类被隐式地声明为final，所以也不能被其他任何类继承</li>
+<li>枚举类型的构造函数修饰符必须是private。定义枚举常量时会自动调用，不能自己调用枚举的构造函数</li>
+<li>枚举类的实例必须在第一行列出，并且枚举值默认被public static final修饰</li>
+<li>编译时编译器会自动帮我们添加两个静态方法<code>values()</code>和<code>valueOf()</code></li>
+</ul>
+<h4 id="12-枚举类的原理">1.2 枚举类的原理</h4>
+<p>下面我们定义了一个枚举类并让它实现Info接口，这样可以让枚举值提供不同的实现，当然也可以在枚举类里面定义一个抽象方法，这样枚举值也必须实现此抽象方法才可，效果都一样。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="kd">public</span> <span class="kd">enum</span> <span class="n">Season</span> <span class="kd">implements</span> <span class="n">Info</span><span class="o">{</span>
+    <span class="n">SPRING</span><span class="o">(</span><span class="s">&#34;spring&#34;</span><span class="o">,</span><span class="s">&#34;春暖花开&#34;</span><span class="o">){</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">(){</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;春天在哪里&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">},</span>
+    <span class="n">SUMMER</span><span class="o">(</span><span class="s">&#34;summer&#34;</span><span class="o">,</span><span class="s">&#34;夏日炎炎&#34;</span><span class="o">){</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">(){</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;生如夏花&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">},</span>
+    <span class="n">AUTUMN</span><span class="o">(</span><span class="s">&#34;autumn&#34;</span><span class="o">,</span><span class="s">&#34;秋高气爽&#34;</span><span class="o">){</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">(){</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;秋&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">},</span>
+    <span class="n">WINTER</span><span class="o">(</span><span class="s">&#34;winter&#34;</span><span class="o">,</span><span class="s">&#34;白雪茫茫&#34;</span><span class="o">){</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">(){</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;冷&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">};</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">seasonName</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">seasonDesc</span><span class="o">;</span>
+
+
+    <span class="n">Season</span><span class="o">(</span><span class="n">String</span> <span class="n">seasonName</span><span class="o">,</span><span class="n">String</span> <span class="n">seasonDesc</span><span class="o">){</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">seasonName</span> <span class="o">=</span> <span class="n">seasonName</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">seasonDesc</span> <span class="o">=</span> <span class="n">seasonDesc</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getSeasonName</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">seasonName</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getSeasonDesc</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">seasonDesc</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">&#34;Season{&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;seasonName=&#39;&#34;</span> <span class="o">+</span> <span class="n">seasonName</span> <span class="o">+</span> <span class="sc">&#39;\&#39;&#39;</span> <span class="o">+</span>
+                <span class="s">&#34;, seasonDesc=&#39;&#34;</span> <span class="o">+</span> <span class="n">seasonDesc</span> <span class="o">+</span> <span class="sc">&#39;\&#39;&#39;</span> <span class="o">+</span>
+                <span class="sc">&#39;}&#39;</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到该枚举类编译后的class文件，其中还包括了四个枚举值对应的class文件，而且其后还带有序号。在枚举实例创建时会给每个枚举值指定一个整形常量值（序号），若没有显示指定，则 整形常量值从0开始递增。这其实是与父类Enum有关，后面会介绍。</p>
+<a class="lightgallery" href="https://cdn.heysen.xyz/201907222345_571.png" title="https://cdn.heysen.xyz/201907222345_571.png" data-thumbnail="https://cdn.heysen.xyz/201907222345_571.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://cdn.heysen.xyz/201907222345_571.png"
+            data-srcset="https://cdn.heysen.xyz/201907222345_571.png, https://cdn.heysen.xyz/201907222345_571.png 1.5x, https://cdn.heysen.xyz/201907222345_571.png 2x"
+            data-sizes="auto"
+            alt="https://cdn.heysen.xyz/201907222345_571.png" />
+    </a>
+<p>下面是利用javap工具查看Season.java经过编译后的字节码（请忽略乱码&ndash;.&ndash;）:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="s">&#34;C:\Program Files\Java\jdk1.8.0_201\bin\javap.exe&#34;</span> <span class="o">-</span><span class="n">c</span> <span class="n">pre</span><span class="o">.</span><span class="na">chl</span><span class="o">.</span><span class="na">enums</span><span class="o">.</span><span class="na">Season</span>
+<span class="n">Compiled</span> <span class="n">from</span> <span class="s">&#34;Season.java&#34;</span>
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">pre</span><span class="o">.</span><span class="na">chl</span><span class="o">.</span><span class="na">enums</span><span class="o">.</span><span class="na">Season</span> <span class="kd">extends</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Enum</span><span class="o">&lt;</span><span class="n">pre</span><span class="o">.</span><span class="na">chl</span><span class="o">.</span><span class="na">enums</span><span class="o">.</span><span class="na">Season</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">pre</span><span class="o">.</span><span class="na">chl</span><span class="o">.</span><span class="na">enums</span><span class="o">.</span><span class="na">Info</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">pre</span><span class="o">.</span><span class="na">chl</span><span class="o">.</span><span class="na">enums</span><span class="o">.</span><span class="na">Season</span> <span class="n">SPRING</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">pre</span><span class="o">.</span><span class="na">chl</span><span class="o">.</span><span class="na">enums</span><span class="o">.</span><span class="na">Season</span> <span class="n">SUMMER</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">pre</span><span class="o">.</span><span class="na">chl</span><span class="o">.</span><span class="na">enums</span><span class="o">.</span><span class="na">Season</span> <span class="n">AUTUMN</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">pre</span><span class="o">.</span><span class="na">chl</span><span class="o">.</span><span class="na">enums</span><span class="o">.</span><span class="na">Season</span> <span class="n">WINTER</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="n">pre</span><span class="o">.</span><span class="na">chl</span><span class="o">.</span><span class="na">enums</span><span class="o">.</span><span class="na">Season</span><span class="o">[]</span> <span class="nf">values</span><span class="o">();</span>
+    <span class="n">Code</span><span class="o">:</span>
+       <span class="n">0</span><span class="o">:</span> <span class="n">getstatic</span>     <span class="err">#</span><span class="n">2</span>                  <span class="c1">// Field $VALUES:[Lpre/chl/enums/Season;
+</span><span class="c1"></span>       <span class="n">3</span><span class="o">:</span> <span class="n">invokevirtual</span> <span class="err">#</span><span class="n">3</span>                  <span class="c1">// Method &#34;[Lpre/chl/enums/Season;&#34;.clone:()Ljava/lang/Object;
+</span><span class="c1"></span>       <span class="n">6</span><span class="o">:</span> <span class="n">checkcast</span>     <span class="err">#</span><span class="n">4</span>                  <span class="c1">// class &#34;[Lpre/chl/enums/Season;&#34;
+</span><span class="c1"></span>       <span class="n">9</span><span class="o">:</span> <span class="n">areturn</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="n">pre</span><span class="o">.</span><span class="na">chl</span><span class="o">.</span><span class="na">enums</span><span class="o">.</span><span class="na">Season</span> <span class="nf">valueOf</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span><span class="o">);</span>
+    <span class="n">Code</span><span class="o">:</span>
+       <span class="n">0</span><span class="o">:</span> <span class="n">ldc</span>           <span class="err">#</span><span class="n">5</span>                  <span class="c1">// class pre/chl/enums/Season
+</span><span class="c1"></span>       <span class="n">2</span><span class="o">:</span> <span class="n">aload_0</span>
+       <span class="n">3</span><span class="o">:</span> <span class="n">invokestatic</span>  <span class="err">#</span><span class="n">6</span>                  <span class="c1">// Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+</span><span class="c1"></span>       <span class="n">6</span><span class="o">:</span> <span class="n">checkcast</span>     <span class="err">#</span><span class="n">5</span>                  <span class="c1">// class pre/chl/enums/Season
+</span><span class="c1"></span>       <span class="n">9</span><span class="o">:</span> <span class="n">areturn</span>
+
+  <span class="kd">public</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span> <span class="nf">getSeasonName</span><span class="o">();</span>
+    <span class="n">Code</span><span class="o">:</span>
+       <span class="n">0</span><span class="o">:</span> <span class="n">aload_0</span>
+       <span class="n">1</span><span class="o">:</span> <span class="n">getfield</span>      <span class="err">#</span><span class="n">8</span>                  <span class="c1">// Field seasonName:Ljava/lang/String;
+</span><span class="c1"></span>       <span class="n">4</span><span class="o">:</span> <span class="n">areturn</span>
+
+  <span class="kd">public</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span> <span class="nf">getSeasonDesc</span><span class="o">();</span>
+    <span class="n">Code</span><span class="o">:</span>
+       <span class="n">0</span><span class="o">:</span> <span class="n">aload_0</span>
+       <span class="n">1</span><span class="o">:</span> <span class="n">getfield</span>      <span class="err">#</span><span class="n">9</span>                  <span class="c1">// Field seasonDesc:Ljava/lang/String;
+</span><span class="c1"></span>       <span class="n">4</span><span class="o">:</span> <span class="n">areturn</span>
+
+  <span class="kd">public</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span> <span class="nf">toString</span><span class="o">();</span>
+    <span class="n">Code</span><span class="o">:</span>
+       <span class="n">0</span><span class="o">:</span> <span class="k">new</span>           <span class="err">#</span><span class="n">10</span>                 <span class="c1">// class java/lang/StringBuilder
+</span><span class="c1"></span>       <span class="n">3</span><span class="o">:</span> <span class="n">dup</span>
+       <span class="n">4</span><span class="o">:</span> <span class="n">invokespecial</span> <span class="err">#</span><span class="n">11</span>                 <span class="c1">// Method java/lang/StringBuilder.&#34;&lt;init&gt;&#34;:()V
+</span><span class="c1"></span>       <span class="n">7</span><span class="o">:</span> <span class="n">ldc</span>           <span class="err">#</span><span class="n">12</span>                 <span class="c1">// String Season{seasonName=&#39;
+</span><span class="c1"></span>       <span class="n">9</span><span class="o">:</span> <span class="n">invokevirtual</span> <span class="err">#</span><span class="n">13</span>                 <span class="c1">// Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+</span><span class="c1"></span>      <span class="n">12</span><span class="o">:</span> <span class="n">aload_0</span>
+      <span class="n">13</span><span class="o">:</span> <span class="n">getfield</span>      <span class="err">#</span><span class="n">8</span>                  <span class="c1">// Field seasonName:Ljava/lang/String;
+</span><span class="c1"></span>      <span class="n">16</span><span class="o">:</span> <span class="n">invokevirtual</span> <span class="err">#</span><span class="n">13</span>                 <span class="c1">// Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+</span><span class="c1"></span>      <span class="n">19</span><span class="o">:</span> <span class="n">bipush</span>        <span class="n">39</span>
+      <span class="n">21</span><span class="o">:</span> <span class="n">invokevirtual</span> <span class="err">#</span><span class="n">14</span>                 <span class="c1">// Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+</span><span class="c1"></span>      <span class="n">24</span><span class="o">:</span> <span class="n">ldc</span>           <span class="err">#</span><span class="n">15</span>                 <span class="c1">// String , seasonDesc=&#39;
+</span><span class="c1"></span>      <span class="n">26</span><span class="o">:</span> <span class="n">invokevirtual</span> <span class="err">#</span><span class="n">13</span>                 <span class="c1">// Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+</span><span class="c1"></span>      <span class="n">29</span><span class="o">:</span> <span class="n">aload_0</span>
+      <span class="n">30</span><span class="o">:</span> <span class="n">getfield</span>      <span class="err">#</span><span class="n">9</span>                  <span class="c1">// Field seasonDesc:Ljava/lang/String;
+</span><span class="c1"></span>      <span class="n">33</span><span class="o">:</span> <span class="n">invokevirtual</span> <span class="err">#</span><span class="n">13</span>                 <span class="c1">// Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+</span><span class="c1"></span>      <span class="n">36</span><span class="o">:</span> <span class="n">bipush</span>        <span class="n">39</span>
+      <span class="n">38</span><span class="o">:</span> <span class="n">invokevirtual</span> <span class="err">#</span><span class="n">14</span>                 <span class="c1">// Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+</span><span class="c1"></span>      <span class="n">41</span><span class="o">:</span> <span class="n">bipush</span>        <span class="n">125</span>
+      <span class="n">43</span><span class="o">:</span> <span class="n">invokevirtual</span> <span class="err">#</span><span class="n">14</span>                 <span class="c1">// Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+</span><span class="c1"></span>      <span class="n">46</span><span class="o">:</span> <span class="n">invokevirtual</span> <span class="err">#</span><span class="n">16</span>                 <span class="c1">// Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+</span><span class="c1"></span>      <span class="n">49</span><span class="o">:</span> <span class="n">areturn</span>
+
+  <span class="n">pre</span><span class="o">.</span><span class="na">chl</span><span class="o">.</span><span class="na">enums</span><span class="o">.</span><span class="na">Season</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span><span class="o">,</span> <span class="kt">int</span><span class="o">,</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span><span class="o">,</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span><span class="o">,</span> <span class="n">pre</span><span class="o">.</span><span class="na">chl</span><span class="o">.</span><span class="na">enums</span><span class="o">.</span><span class="na">Season$1</span><span class="o">);</span>
+    <span class="n">Code</span><span class="o">:</span>
+       <span class="n">0</span><span class="o">:</span> <span class="n">aload_0</span>
+       <span class="n">1</span><span class="o">:</span> <span class="n">aload_1</span>
+       <span class="n">2</span><span class="o">:</span> <span class="n">iload_2</span>
+       <span class="n">3</span><span class="o">:</span> <span class="n">aload_3</span>
+       <span class="n">4</span><span class="o">:</span> <span class="n">aload</span>         <span class="n">4</span>
+       <span class="n">6</span><span class="o">:</span> <span class="n">invokespecial</span> <span class="err">#</span><span class="n">1</span>                  <span class="c1">// Method &#34;&lt;init&gt;&#34;:(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+</span><span class="c1"></span>       <span class="n">9</span><span class="o">:</span> <span class="k">return</span>
+
+  <span class="kd">static</span> <span class="o">{};</span>
+    <span class="n">Code</span><span class="o">:</span>
+       <span class="n">0</span><span class="o">:</span> <span class="k">new</span>           <span class="err">#</span><span class="n">17</span>                 <span class="c1">// class pre/chl/enums/Season$1
+</span><span class="c1"></span>       <span class="n">3</span><span class="o">:</span> <span class="n">dup</span>
+       <span class="n">4</span><span class="o">:</span> <span class="n">ldc</span>           <span class="err">#</span><span class="n">18</span>                 <span class="c1">// String SPRING
+</span><span class="c1"></span>       <span class="n">6</span><span class="o">:</span> <span class="n">iconst_0</span>
+       <span class="n">7</span><span class="o">:</span> <span class="n">ldc</span>           <span class="err">#</span><span class="n">19</span>                 <span class="c1">// String spring
+</span><span class="c1"></span>       <span class="n">9</span><span class="o">:</span> <span class="n">ldc</span>           <span class="err">#</span><span class="n">20</span>                 <span class="c1">// String ��ů����
+</span><span class="c1"></span>      <span class="n">11</span><span class="o">:</span> <span class="n">invokespecial</span> <span class="err">#</span><span class="n">21</span>                 <span class="c1">// Method pre/chl/enums/Season$1.&#34;&lt;init&gt;&#34;:(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+</span><span class="c1"></span>      <span class="n">14</span><span class="o">:</span> <span class="n">putstatic</span>     <span class="err">#</span><span class="n">22</span>                 <span class="c1">// Field SPRING:Lpre/chl/enums/Season;
+</span><span class="c1"></span>      <span class="n">17</span><span class="o">:</span> <span class="k">new</span>           <span class="err">#</span><span class="n">23</span>                 <span class="c1">// class pre/chl/enums/Season$2
+</span><span class="c1"></span>      <span class="n">20</span><span class="o">:</span> <span class="n">dup</span>
+      <span class="n">21</span><span class="o">:</span> <span class="n">ldc</span>           <span class="err">#</span><span class="n">24</span>                 <span class="c1">// String SUMMER
+</span><span class="c1"></span>      <span class="n">23</span><span class="o">:</span> <span class="n">iconst_1</span>
+      <span class="n">24</span><span class="o">:</span> <span class="n">ldc</span>           <span class="err">#</span><span class="n">25</span>                 <span class="c1">// String summer
+</span><span class="c1"></span>      <span class="n">26</span><span class="o">:</span> <span class="n">ldc</span>           <span class="err">#</span><span class="n">26</span>                 <span class="c1">// String ��������
+</span><span class="c1"></span>      <span class="n">28</span><span class="o">:</span> <span class="n">invokespecial</span> <span class="err">#</span><span class="n">27</span>                 <span class="c1">// Method pre/chl/enums/Season$2.&#34;&lt;init&gt;&#34;:(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+</span><span class="c1"></span>      <span class="n">31</span><span class="o">:</span> <span class="n">putstatic</span>     <span class="err">#</span><span class="n">28</span>                 <span class="c1">// Field SUMMER:Lpre/chl/enums/Season;
+</span><span class="c1"></span>      <span class="n">34</span><span class="o">:</span> <span class="k">new</span>           <span class="err">#</span><span class="n">29</span>                 <span class="c1">// class pre/chl/enums/Season$3
+</span><span class="c1"></span>      <span class="n">37</span><span class="o">:</span> <span class="n">dup</span>
+      <span class="n">38</span><span class="o">:</span> <span class="n">ldc</span>           <span class="err">#</span><span class="n">30</span>                 <span class="c1">// String AUTUMN
+</span><span class="c1"></span>      <span class="n">40</span><span class="o">:</span> <span class="n">iconst_2</span>
+      <span class="n">41</span><span class="o">:</span> <span class="n">ldc</span>           <span class="err">#</span><span class="n">31</span>                 <span class="c1">// String autumn
+</span><span class="c1"></span>      <span class="n">43</span><span class="o">:</span> <span class="n">ldc</span>           <span class="err">#</span><span class="n">32</span>                 <span class="c1">// String �����ˬ
+</span><span class="c1"></span>      <span class="n">45</span><span class="o">:</span> <span class="n">invokespecial</span> <span class="err">#</span><span class="n">33</span>                 <span class="c1">// Method pre/chl/enums/Season$3.&#34;&lt;init&gt;&#34;:(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+</span><span class="c1"></span>      <span class="n">48</span><span class="o">:</span> <span class="n">putstatic</span>     <span class="err">#</span><span class="n">34</span>                 <span class="c1">// Field AUTUMN:Lpre/chl/enums/Season;
+</span><span class="c1"></span>      <span class="n">51</span><span class="o">:</span> <span class="k">new</span>           <span class="err">#</span><span class="n">35</span>                 <span class="c1">// class pre/chl/enums/Season$4
+</span><span class="c1"></span>      <span class="n">54</span><span class="o">:</span> <span class="n">dup</span>
+      <span class="n">55</span><span class="o">:</span> <span class="n">ldc</span>           <span class="err">#</span><span class="n">36</span>                 <span class="c1">// String WINTER
+</span><span class="c1"></span>      <span class="n">57</span><span class="o">:</span> <span class="n">iconst_3</span>
+      <span class="n">58</span><span class="o">:</span> <span class="n">ldc</span>           <span class="err">#</span><span class="n">37</span>                 <span class="c1">// String winter
+</span><span class="c1"></span>      <span class="n">60</span><span class="o">:</span> <span class="n">ldc</span>           <span class="err">#</span><span class="n">38</span>                 <span class="c1">// String ��ѩãã
+</span><span class="c1"></span>      <span class="n">62</span><span class="o">:</span> <span class="n">invokespecial</span> <span class="err">#</span><span class="n">39</span>                 <span class="c1">// Method pre/chl/enums/Season$4.&#34;&lt;init&gt;&#34;:(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+</span><span class="c1"></span>      <span class="n">65</span><span class="o">:</span> <span class="n">putstatic</span>     <span class="err">#</span><span class="n">40</span>                 <span class="c1">// Field WINTER:Lpre/chl/enums/Season;
+</span><span class="c1"></span>      <span class="n">68</span><span class="o">:</span> <span class="n">iconst_4</span>
+      <span class="n">69</span><span class="o">:</span> <span class="n">anewarray</span>     <span class="err">#</span><span class="n">5</span>                  <span class="c1">// class pre/chl/enums/Season
+</span><span class="c1"></span>      <span class="n">72</span><span class="o">:</span> <span class="n">dup</span>
+      <span class="n">73</span><span class="o">:</span> <span class="n">iconst_0</span>
+      <span class="n">74</span><span class="o">:</span> <span class="n">getstatic</span>     <span class="err">#</span><span class="n">22</span>                 <span class="c1">// Field SPRING:Lpre/chl/enums/Season;
+</span><span class="c1"></span>      <span class="n">77</span><span class="o">:</span> <span class="n">aastore</span>
+      <span class="n">78</span><span class="o">:</span> <span class="n">dup</span>
+      <span class="n">79</span><span class="o">:</span> <span class="n">iconst_1</span>
+      <span class="n">80</span><span class="o">:</span> <span class="n">getstatic</span>     <span class="err">#</span><span class="n">28</span>                 <span class="c1">// Field SUMMER:Lpre/chl/enums/Season;
+</span><span class="c1"></span>      <span class="n">83</span><span class="o">:</span> <span class="n">aastore</span>
+      <span class="n">84</span><span class="o">:</span> <span class="n">dup</span>
+      <span class="n">85</span><span class="o">:</span> <span class="n">iconst_2</span>
+      <span class="n">86</span><span class="o">:</span> <span class="n">getstatic</span>     <span class="err">#</span><span class="n">34</span>                 <span class="c1">// Field AUTUMN:Lpre/chl/enums/Season;
+</span><span class="c1"></span>      <span class="n">89</span><span class="o">:</span> <span class="n">aastore</span>
+      <span class="n">90</span><span class="o">:</span> <span class="n">dup</span>
+      <span class="n">91</span><span class="o">:</span> <span class="n">iconst_3</span>
+      <span class="n">92</span><span class="o">:</span> <span class="n">getstatic</span>     <span class="err">#</span><span class="n">40</span>                 <span class="c1">// Field WINTER:Lpre/chl/enums/Season;
+</span><span class="c1"></span>      <span class="n">95</span><span class="o">:</span> <span class="n">aastore</span>
+      <span class="n">96</span><span class="o">:</span> <span class="n">putstatic</span>     <span class="err">#</span><span class="n">2</span>                  <span class="c1">// Field $VALUES:[Lpre/chl/enums/Season;
+</span><span class="c1"></span>      <span class="n">99</span><span class="o">:</span> <span class="k">return</span>
+<span class="o">}</span>
+
+<span class="n">Process</span> <span class="n">finished</span> <span class="n">with</span> <span class="n">exit</span> <span class="n">code</span> <span class="n">0</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>可以发现，一个枚举类在经过编译后变成了一个抽象类，同时添加了两个方法<code>values()</code>和<code>valueOf(String)</code>。这里还可以看到字节码中的构造函数多了两个参数，一个int型一个String型，这两个参数其实是Enum里面的。</p>
+<h4 id="13-javalangenum">1.3 java.lang.Enum</h4>
+<p>下面是JDK1.8的实现，注释做了部分翻译。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java">
+<span class="kn">package</span> <span class="nn">java.lang</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.Serializable</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InvalidObjectException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.ObjectInputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.ObjectStreamException</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * 这是所有Java语言枚举类型的公共基类。
+</span><span class="cm"> *
+</span><span class="cm"> * 有关枚举的更多信息，包括对枚举的描述、隐式声明由编译器合成的方法，
+</span><span class="cm"> * 可以见于&lt;cite&gt; Java＆trade;Language&lt;/ cite&gt;的第8、9节。
+</span><span class="cm"> * 另外，使用枚举类型作为set的类型或作为Map中keys的类型时，java.util.EnumSet
+</span><span class="cm"> * 和java.util.EnumMap更加高效
+</span><span class="cm"> *
+</span><span class="cm"> * @param &lt;E&gt; The enum type subclass
+</span><span class="cm"> * @author  Josh Bloch
+</span><span class="cm"> * @author  Neal Gafter
+</span><span class="cm"> * @see     Class#getEnumConstants()
+</span><span class="cm"> * @see     java.util.EnumSet
+</span><span class="cm"> * @see     java.util.EnumMap
+</span><span class="cm"> * @since   1.5
+</span><span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Enum</span><span class="o">&lt;</span><span class="n">E</span> <span class="kd">extends</span> <span class="n">Enum</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;&gt;</span>
+        <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;,</span> <span class="n">Serializable</span> <span class="o">{</span>
+    <span class="cm">/**
+</span><span class="cm">     * 枚举常量的名称，和枚举声明中声明的一致。
+</span><span class="cm">     * 大多数程序员应该使用{@link #toString}方法而不是直接访问此字段。
+</span><span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * Returns the name of this enum constant, exactly as declared in its
+</span><span class="cm">     * enum declaration.
+</span><span class="cm">     *
+</span><span class="cm">     * &lt;b&gt;Most programmers should use the {@link #toString} method in
+</span><span class="cm">     * preference to this one, as the toString method may return
+</span><span class="cm">     * a more user-friendly name.&lt;/b&gt;  This method is designed primarily for
+</span><span class="cm">     * use in specialized situations where correctness depends on getting the
+</span><span class="cm">     * exact name, which will not vary from release to release.
+</span><span class="cm">     *
+</span><span class="cm">     * @return the name of this enum constant
+</span><span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="n">String</span> <span class="nf">name</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * 这个枚举常量的序数（它在枚举声明中的位置，分配给初始常量的序数为零）。
+</span><span class="cm">     * 大多数程序员对此字段没有使用。它是专门设计的供复杂的基于枚举的数据结构使用	 * 的，例如{@link java.util.EnumSet}和{@link java.util.EnumMap}.
+</span><span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">ordinal</span><span class="o">;</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * Returns the ordinal of this enumeration constant (its position
+</span><span class="cm">     * in its enum declaration, where the initial constant is assigned
+</span><span class="cm">     * an ordinal of zero).
+</span><span class="cm">     *
+</span><span class="cm">     * Most programmers will have no use for this method.  It is
+</span><span class="cm">     * designed for use by sophisticated enum-based data structures, such
+</span><span class="cm">     * as {@link java.util.EnumSet} and {@link java.util.EnumMap}.
+</span><span class="cm">     *
+</span><span class="cm">     * @return the ordinal of this enumeration constant
+</span><span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">int</span> <span class="nf">ordinal</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">ordinal</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * 唯一的构造函数，程序员无法调用次构造函数。它由编译器在进行枚举类型声明时调用。
+</span><span class="cm">     *
+</span><span class="cm">     * @param name - The name of this enum constant, which is the identifier
+</span><span class="cm">     *               used to declare it.
+</span><span class="cm">     * @param ordinal - The ordinal of this enumeration constant (its position
+</span><span class="cm">     *         in the enum declaration, where the initial constant is assigned
+</span><span class="cm">     *         an ordinal of zero).
+</span><span class="cm">     */</span>
+    <span class="kd">protected</span> <span class="nf">Enum</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">ordinal</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">ordinal</span> <span class="o">=</span> <span class="n">ordinal</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * Returns the name of this enum constant, as contained in the
+</span><span class="cm">     * declaration.  This method may be overridden, though it typically
+</span><span class="cm">     * isn&#39;t necessary or desirable.  An enum type should override this
+</span><span class="cm">     * method when a more &#34;programmer-friendly&#34; string form exists.
+</span><span class="cm">     *
+</span><span class="cm">     * @return the name of this enum constant
+</span><span class="cm">     */</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * Returns true if the specified object is equal to this
+</span><span class="cm">     * enum constant.
+</span><span class="cm">     *
+</span><span class="cm">     * @param other the object to be compared for equality with this object.
+</span><span class="cm">     * @return  true if the specified object is equal to this
+</span><span class="cm">     *          enum constant.
+</span><span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">other</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">==</span><span class="n">other</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * Returns a hash code for this enum constant.
+</span><span class="cm">     *
+</span><span class="cm">     * @return a hash code for this enum constant.
+</span><span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">hashCode</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * 抛出CloneNotSupportedException。这保证了枚举永远不会被克隆，这保证它们的“单例状态”。
+</span><span class="cm">     *
+</span><span class="cm">     * @return (never returns)
+</span><span class="cm">     */</span>
+    <span class="kd">protected</span> <span class="kd">final</span> <span class="n">Object</span> <span class="nf">clone</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">CloneNotSupportedException</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">CloneNotSupportedException</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * Compares this enum with the specified object for order.  Returns a
+</span><span class="cm">     * negative integer, zero, or a positive integer as this object is less
+</span><span class="cm">     * than, equal to, or greater than the specified object.
+</span><span class="cm">     *
+</span><span class="cm">     * Enum constants are only comparable to other enum constants of the
+</span><span class="cm">     * same enum type.  The natural order implemented by this
+</span><span class="cm">     * method is the order in which the constants are declared.
+</span><span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">E</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Enum</span><span class="o">&lt;?&gt;</span> <span class="n">other</span> <span class="o">=</span> <span class="o">(</span><span class="n">Enum</span><span class="o">&lt;?&gt;)</span><span class="n">o</span><span class="o">;</span>
+        <span class="n">Enum</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">self</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">self</span><span class="o">.</span><span class="na">getClass</span><span class="o">()</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="na">getClass</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="c1">// optimization
+</span><span class="c1"></span>            <span class="n">self</span><span class="o">.</span><span class="na">getDeclaringClass</span><span class="o">()</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="na">getDeclaringClass</span><span class="o">())</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">ClassCastException</span><span class="o">();</span>
+        <span class="k">return</span> <span class="n">self</span><span class="o">.</span><span class="na">ordinal</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="na">ordinal</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * Returns the Class object corresponding to this enum constant&#39;s
+</span><span class="cm">     * enum type.  Two enum constants e1 and  e2 are of the
+</span><span class="cm">     * same enum type if and only if
+</span><span class="cm">     *   e1.getDeclaringClass() == e2.getDeclaringClass().
+</span><span class="cm">     * (The value returned by this method may differ from the one returned
+</span><span class="cm">     * by the {@link Object#getClass} method for enum constants with
+</span><span class="cm">     * constant-specific class bodies.)
+</span><span class="cm">     *
+</span><span class="cm">     * @return the Class object corresponding to this enum constant&#39;s
+</span><span class="cm">     *     enum type
+</span><span class="cm">     */</span>
+    <span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">&#34;unchecked&#34;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">getDeclaringClass</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">clazz</span> <span class="o">=</span> <span class="n">getClass</span><span class="o">();</span>
+        <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">zuper</span> <span class="o">=</span> <span class="n">clazz</span><span class="o">.</span><span class="na">getSuperclass</span><span class="o">();</span>
+        <span class="k">return</span> <span class="o">(</span><span class="n">zuper</span> <span class="o">==</span> <span class="n">Enum</span><span class="o">.</span><span class="na">class</span><span class="o">)</span> <span class="o">?</span> <span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;)</span><span class="n">clazz</span> <span class="o">:</span> <span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;)</span><span class="n">zuper</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * 返回指定枚举类型和名称的枚举常量，名称必须与声明的完全匹配。
+</span><span class="cm">     * 无关的空白字符是不被允许的。
+</span><span class="cm">     * &lt;p&gt;Note that for a particular enum type {@code T}, the
+</span><span class="cm">     * implicitly declared {@code public static T valueOf(String)}
+</span><span class="cm">     * method on that enum may be used instead of this method to map
+</span><span class="cm">     * from a name to the corresponding enum constant. 所有的枚举常量值可以通过调用隐式方法{@code public static T[] values()}获得。
+</span><span class="cm">     *
+</span><span class="cm">     * @param &lt;T&gt; The enum type whose constant is to be returned
+</span><span class="cm">     * @param enumType the {@code Class} object of the enum type from which
+</span><span class="cm">     *      to return a constant
+</span><span class="cm">     * @param name the name of the constant to return
+</span><span class="cm">     * @return the enum constant of the specified enum type with the
+</span><span class="cm">     *      specified name
+</span><span class="cm">     * @throws IllegalArgumentException if the specified enum type has
+</span><span class="cm">     *         no constant with the specified name, or the specified
+</span><span class="cm">     *         class object does not represent an enum type
+</span><span class="cm">     * @throws NullPointerException if {@code enumType} or {@code name}
+</span><span class="cm">     *         is null
+</span><span class="cm">     * @since 1.5
+</span><span class="cm">     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Enum</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="n">T</span> <span class="nf">valueOf</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">enumType</span><span class="o">,</span>
+                                                <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">T</span> <span class="n">result</span> <span class="o">=</span> <span class="n">enumType</span><span class="o">.</span><span class="na">enumConstantDirectory</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">result</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+            <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">name</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">NullPointerException</span><span class="o">(</span><span class="s">&#34;Name is null&#34;</span><span class="o">);</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span>
+            <span class="s">&#34;No enum constant &#34;</span> <span class="o">+</span> <span class="n">enumType</span><span class="o">.</span><span class="na">getCanonicalName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;.&#34;</span> <span class="o">+</span> <span class="n">name</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * enum classes cannot have finalize methods.
+</span><span class="cm">     */</span>
+    <span class="kd">protected</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">finalize</span><span class="o">()</span> <span class="o">{</span> <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * 防止默认反序列化。
+</span><span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">readObject</span><span class="o">(</span><span class="n">ObjectInputStream</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span>
+        <span class="n">ClassNotFoundException</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">InvalidObjectException</span><span class="o">(</span><span class="s">&#34;can&#39;t deserialize enum&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">readObjectNoData</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">ObjectStreamException</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">InvalidObjectException</span><span class="o">(</span><span class="s">&#34;can&#39;t deserialize enum&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>引用API文档对Enum中一些方法（不包含继承Object的）的解释:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">protected Object</th>
+<th style="text-align:center">clone()抛出CloneNotSupportedException异常</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:center">compareTo(E o)将此枚举与指定的对象比较以进行排序</td>
+</tr>
+<tr>
+<td style="text-align:left">boolean</td>
+<td style="text-align:center">equals(Object other)如果指定的对象和此枚举常量相等就返回true</td>
+</tr>
+<tr>
+<td style="text-align:left">protected void</td>
+<td style="text-align:center">finalize()枚举类不能有finalize方法</td>
+</tr>
+<tr>
+<td style="text-align:left">Class<E></td>
+<td style="text-align:center">getDeclaringClass()返回和此枚举常量的枚举类型相对应的Class对象</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:center">hashCode()返回此枚举常量的哈希值</td>
+</tr>
+<tr>
+<td style="text-align:left">String</td>
+<td style="text-align:center">name()返回此枚举常量的名称,与其枚举声明中声明的一致</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:center">ordinal()返回此枚举常量的序号(它在枚举声明中的位置,初始常量的序号默认为0)</td>
+</tr>
+<tr>
+<td style="text-align:left">String</td>
+<td style="text-align:center">toString()返回声明中包含的枚举常量的名称</td>
+</tr>
+<tr>
+<td style="text-align:left">static &lt;T extends Enum<T>&gt;</td>
+<td style="text-align:center">valueOf(Class<T> enumType,String name)返回指定名称和类型的枚举常量</td>
+</tr>
+</tbody>
+</table>
+<p>这里有一点需要注意的是，我们不能在定义的枚举类型的构造器里调用父类Enum的构造器，这是不被允许的，在编译器编译时会自动帮我们调用去初始化枚举值的声明。虽然Enum是一个抽象类，但是自定义枚举类型仍然会在编译阶段使用Enum的构造函数，不过在创建子类对象时到底有没有创建父类对象还存在分歧，具体可以看看知乎上的这篇<a href="https://www.zhihu.com/question/51920553/answer/128610039?utm_source=qq&amp;utm_medium=social" target="_blank" rel="noopener noreffer">文章</a>。</p>
+<h3 id="2-枚举类的使用">2. 枚举类的使用</h3>
+<h4 id="21-定义">2.1 定义</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">enum</span> <span class="n">Day</span> <span class="o">{</span>
+    <span class="n">SUNDAY</span><span class="o">,</span> <span class="n">MONDAY</span><span class="o">,</span> <span class="n">TUESDAY</span><span class="o">,</span> <span class="n">WEDNESDAY</span><span class="o">,</span>
+    <span class="n">THURSDAY</span><span class="o">,</span> <span class="n">FRIDAY</span><span class="o">,</span> <span class="n">SATURDAY</span> 
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>枚举值之间使用&quot;,&ldquo;分隔，如果后面没有属性或方法，最后加不加&rdquo;;&ldquo;都行。但如果有就一定要加&rdquo;;&quot;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">enum</span> <span class="n">PurOrderSplitEnum</span> <span class="o">{</span>
+    <span class="n">NORELEASEERPBILLCOUNT</span><span class="o">(</span><span class="s">&#34;1&#34;</span><span class="o">,</span> <span class="s">&#34;待发布&#34;</span><span class="o">),</span>
+    <span class="n">RELEASEERPBILLCOUNT</span><span class="o">(</span><span class="s">&#34;2&#34;</span><span class="o">,</span> <span class="s">&#34;待买方确认&#34;</span><span class="o">),</span>
+    <span class="n">PURCONFIRMINGCOUNT</span><span class="o">(</span><span class="s">&#34;3&#34;</span><span class="o">,</span> <span class="s">&#34;买方变更中&#34;</span><span class="o">);</span>
+    
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">code</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">code2name</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">code2Muname</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>
+
+    <span class="kd">private</span> <span class="nf">PurOrderSplitEnum</span><span class="o">(</span><span class="n">String</span> <span class="n">code</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">code</span> <span class="o">=</span> <span class="n">code</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getCode</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">code</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">static</span> <span class="o">{</span>
+        <span class="n">code2name</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">NORELEASEERPBILLCOUNT</span><span class="o">.</span><span class="na">getCode</span><span class="o">(),</span> <span class="n">NORELEASEERPBILLCOUNT</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+        <span class="n">code2name</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">RELEASEERPBILLCOUNT</span><span class="o">.</span><span class="na">getCode</span><span class="o">(),</span> <span class="n">RELEASEERPBILLCOUNT</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+        <span class="n">code2name</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">PURCONFIRMINGCOUNT</span><span class="o">.</span><span class="na">getCode</span><span class="o">(),</span> <span class="n">PURCONFIRMINGCOUNT</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+   
+        <span class="n">code2Muname</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">NORELEASEERPBILLCOUNT</span><span class="o">.</span><span class="na">getCode</span><span class="o">(),</span> <span class="s">&#34;NORELEASEERPBILLCOUNT&#34;</span><span class="o">);</span>
+        <span class="n">code2Muname</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">RELEASEERPBILLCOUNT</span><span class="o">.</span><span class="na">getCode</span><span class="o">(),</span> <span class="s">&#34;RELEASEERPBILLCOUNT&#34;</span><span class="o">);</span>
+        <span class="n">code2Muname</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">PURCONFIRMINGCOUNT</span><span class="o">.</span><span class="na">getCode</span><span class="o">(),</span> <span class="s">&#34;PURCONFIRMINGCOUNT&#34;</span><span class="o">);</span>
+     
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="22-结合switch">2.2 结合Switch</h4>
+<p>在switch中使用枚举，可以让我们的代码可读性更好</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EnumTest</span> <span class="o">{</span>
+    <span class="n">Day</span> <span class="n">day</span><span class="o">;</span>
+    
+    <span class="kd">public</span> <span class="nf">EnumTest</span><span class="o">(</span><span class="n">Day</span> <span class="n">day</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">day</span> <span class="o">=</span> <span class="n">day</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">tellItLikeItIs</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">switch</span> <span class="o">(</span><span class="n">day</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">case</span> <span class="n">MONDAY</span><span class="o">:</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;周一还行吧&#34;</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+                    
+            <span class="k">case</span> <span class="n">FRIDAY</span><span class="o">:</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;周五很nice&#34;</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+                         
+            <span class="k">case</span> <span class="n">SATURDAY</span><span class="o">:</span> 
+            <span class="k">case</span> <span class="n">SUNDAY</span><span class="o">:</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;周末超级棒&#34;</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+                        
+            <span class="k">default</span><span class="o">:</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;额....&#34;</span><span class="o">);</span>
+                <span class="k">break</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">EnumTest</span> <span class="n">firstDay</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EnumTest</span><span class="o">(</span><span class="n">Day</span><span class="o">.</span><span class="na">MONDAY</span><span class="o">);</span>
+        <span class="n">firstDay</span><span class="o">.</span><span class="na">tellItLikeItIs</span><span class="o">();</span>
+        <span class="n">EnumTest</span> <span class="n">thirdDay</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EnumTest</span><span class="o">(</span><span class="n">Day</span><span class="o">.</span><span class="na">WEDNESDAY</span><span class="o">);</span>
+        <span class="n">thirdDay</span><span class="o">.</span><span class="na">tellItLikeItIs</span><span class="o">();</span>
+        <span class="n">EnumTest</span> <span class="n">fifthDay</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EnumTest</span><span class="o">(</span><span class="n">Day</span><span class="o">.</span><span class="na">FRIDAY</span><span class="o">);</span>
+        <span class="n">fifthDay</span><span class="o">.</span><span class="na">tellItLikeItIs</span><span class="o">();</span>
+        <span class="n">EnumTest</span> <span class="n">sixthDay</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EnumTest</span><span class="o">(</span><span class="n">Day</span><span class="o">.</span><span class="na">SATURDAY</span><span class="o">);</span>
+        <span class="n">sixthDay</span><span class="o">.</span><span class="na">tellItLikeItIs</span><span class="o">();</span>
+        <span class="n">EnumTest</span> <span class="n">seventhDay</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EnumTest</span><span class="o">(</span><span class="n">Day</span><span class="o">.</span><span class="na">SUNDAY</span><span class="o">);</span>
+        <span class="n">seventhDay</span><span class="o">.</span><span class="na">tellItLikeItIs</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="c1">//输出结果
+</span><span class="c1"></span>    <span class="cm">/*
+</span><span class="cm">    周一还行吧
+</span><span class="cm">	额....
+</span><span class="cm">	周五很nice
+</span><span class="cm">	周末超级棒
+</span><span class="cm">	周末超级棒
+</span><span class="cm">	*/</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="23-valueof方法">2.3 valueOf方法</h4>
+<p>把字符串转成对应类型的枚举值，如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"> <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&#34;SPRING&#34;</span><span class="o">;</span>
+ <span class="n">Season</span> <span class="n">season2</span> <span class="o">=</span> <span class="n">Season</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
+ <span class="c1">//Season season2 = Season.valueOf(Season.class,str);跟上面是等价的
+</span><span class="c1"></span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">season2</span> <span class="o">==</span> <span class="n">season1</span><span class="o">);</span><span class="c1">//true
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="24-values和其他方法">2.4 values()和其他方法</h4>
+<p>values()方法可以返回所有定义的枚举值，name()方法返回的是枚举的名称，不是枚举值里面的属性名称，这里需要注意一下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"> <span class="n">Season</span> <span class="n">season1</span> <span class="o">=</span> <span class="n">Season</span><span class="o">.</span><span class="na">SPRING</span><span class="o">;</span>
+ <span class="k">for</span><span class="o">(</span><span class="n">Season</span> <span class="n">season</span><span class="o">:</span><span class="n">Season</span><span class="o">.</span><span class="na">values</span><span class="o">()){</span>
+     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">season</span><span class="o">);</span>
+ <span class="o">}</span>
+ <span class="n">season1</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>
+ <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">season1</span><span class="o">.</span><span class="na">name</span><span class="o">());</span>
+ <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;SPIRNG的序号:&#34;</span> <span class="o">+</span> <span class="n">season1</span><span class="o">.</span><span class="na">ordinal</span><span class="o">());</span>
+<span class="c1">//输出结果
+</span><span class="c1"></span><span class="cm">/*
+</span><span class="cm">Season{seasonName=&#39;spring&#39;, seasonDesc=&#39;春暖花开&#39;}
+</span><span class="cm">Season{seasonName=&#39;summer&#39;, seasonDesc=&#39;夏日炎炎&#39;}
+</span><span class="cm">Season{seasonName=&#39;autumn&#39;, seasonDesc=&#39;秋高气爽&#39;}
+</span><span class="cm">Season{seasonName=&#39;winter&#39;, seasonDesc=&#39;白雪茫茫&#39;}
+</span><span class="cm">春天在哪里
+</span><span class="cm">SPRING
+</span><span class="cm">0
+</span><span class="cm">*/</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="25-使用接口组织枚举">2.5 使用接口组织枚举</h4>
+<p>在接口中定义枚举类，可以将数据分组。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Animal</span> <span class="o">{</span>  
+    <span class="kd">enum</span> <span class="n">Dog</span> <span class="kd">implements</span> <span class="n">Animal</span> <span class="o">{</span>  
+         <span class="n">HUSKY</span><span class="o">,</span><span class="n">GOLDEN_RETRIEVER</span><span class="o">,</span><span class="n">ALASKAN_MALAMUTE</span>
+    <span class="o">}</span>  
+       
+    <span class="kd">enum</span> <span class="n">Cat</span> <span class="kd">implements</span> <span class="n">Animal</span> <span class="o">{</span>  
+         <span class="n">PERSIAN</span><span class="o">,</span><span class="n">RAGDOLL</span><span class="o">,</span><span class="n">BIRMAN</span>  
+    <span class="o">}</span>  
+<span class="o">}</span>
+<span class="c1">// Animal dog = Animal.Dog.ALASKAN_MALAMUTE;
+</span><span class="c1">// Animal cat = Animal.Cat.BIRMAN;
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="26-enumset和enummap">2.6 EnumSet和EnumMap</h4>
+<p>Set类型是枚举集或Map的key是枚举值时，使用这两者将会更加高效。这里只摘取Java API文档的部分说明，详细的方法大家可以自己查找文档。</p>
+<p>EnumMap</p>
+<blockquote>
+<p>用于枚举类型键的专用Map实现。 枚举映射中的所有键必须来自创建映射时显式或隐式指定的单个枚举类型。 枚举映射在内部表示为数组。 这种表现非常紧凑和高效。</p>
+<p>枚举映射按其键的自然顺序（枚举常量的声明顺序）维护。 这反映在集合视图（keySet（），entrySet（）和values（））返回的迭代器中。</p>
+<p>集合视图返回的迭代器非常一致：它们永远不会抛出ConcurrentModificationException，它们可能会也可能不会显示迭代进行过程中对映射所做的任何修改的影响。</p>
+<p>Key不允许为null。 尝试插入null将抛出NullPointerException。 但是，尝试测试是否存在空键或删除空键将正常运行。 value允许为null。</p>
+<p>与大多数集合实现一样，EnumMap不同步。 如果多个线程同时访问枚举映射，并且至少有一个线程修改了映射，则应该在外部进行同步。 这通常通过在自然封装枚举映射的某个对象上同步来完成。 如果不存在此类对象，则应使用Collections.synchronizedMap（java.util.Map &lt;K，V&gt;）方法“包装”映射。 这最好在创建时完成，以防止意外的不同步访问：</p>
+<p><code>Map &lt;EnumKey，V&gt; m= Collections.synchronizedMap（new EnumMap &lt;EnumKey，V&gt;（...））;</code></p>
+<p>说明：所有基本操作都在恒定时间内执行。 它们很可能（虽然不能保证）比它们对应的HashMap更快。</p>
+</blockquote>
+<p>EnumSet</p>
+<blockquote>
+<p>用于枚举类型的专用Set实现。 枚举集中的所有元素必须来自单个枚举类型，该类型在创建集时显式或隐式指定。 枚举集在内部表示为位向量。 这种表现非常紧凑和高效。 这个类的空间和时间性能应该足够好，以允许它作为传统的基于int的“位标志”的高性能、类型安全的替代品。 如果它们的参数也是枚举集，即使批量操作（例如containsAll和retainAll）也应该非常快速地运行。</p>
+<p>迭代器方法返回的迭代器以其自然顺序（枚举常量声明的顺序）遍历元素。 返回的迭代器是弱一致的：它永远不会抛出ConcurrentModificationException，它可能会也可能不会显示迭代进行过程中对集合所做的任何修改的影响。</p>
+<p>不允许使用空元素。 尝试插入null元素将抛出NullPointerException。 但是，尝试测试null元素的存在或删除一个元素将正常工作。</p>
+<p>与大多数集合实现一样，EnumSet不同步。 如果多个线程同时访问枚举集，并且至少有一个线程修改了该集，则应该在外部进行同步。 这通常通过在自然封装枚举集的某个对象上进行同步来实现。 如果不存在此类对象，则应使用<code>Collections.synchronizedSet（java.util.Set &lt;T&gt;）</code>方法“包装”该集合。 这最好在创建时完成，以防止意外的不同步访问：</p>
+<p><code>Set &lt;MyEnum&gt; s = Collections.synchronizedSet（EnumSet.noneOf（MyEnum.class））;</code></p>
+<p>说明：所有基本操作都在恒定时间内执行。 它们很可能（虽然不能保证）比它们对应的的HashSet快得多。 如果它们的参数也是枚举集，即使批量操作也会在恒定时间内执行。</p>
+</blockquote>
+<h4 id="27-使用枚举实现单例模式">2.7 使用枚举实现单例模式</h4>
+<p>基于枚举类型的特性，Effective Java建议使用枚举来实现单例模式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="kd">public</span> <span class="kd">enum</span> <span class="n">Singleton</span><span class="o">{</span>
+    <span class="n">INSTANCE</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">doSomething</span><span class="o">{</span>
+        <span class="c1">//...
+</span><span class="c1"></span>    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2019-07-22</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/java%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/java/">Java</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E6%B5%85%E8%B0%88xss/" class="prev" rel="prev" title="浅谈XSS"><i class="fas fa-angle-left fa-fw"></i>浅谈XSS</a>
+            <a href="/b%E6%A0%91%E4%B8%8Eb-%E6%A0%91/" class="next" rel="next" title="B树与B&#43;树">B树与B&#43;树<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">H2oLo</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 - 2025</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/" target="_blank">湘ICP备19007912号</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"H2oLo","id-2":"H2oLo"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
