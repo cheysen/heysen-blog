@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Java内存模型 - 标签 - H2oLo</title>
+        <link>https://heysen.xyz/tags/java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</link>
+        <description>Java内存模型 - 标签 - H2oLo</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 08 May 2019 13:22:25 &#43;0800</lastBuildDate><atom:link href="https://heysen.xyz/tags/java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" rel="self" type="application/rss+xml" /><item>
+    <title>简单理解Java内存模型</title>
+    <link>https://heysen.xyz/%E7%90%86%E8%A7%A3java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</link>
+    <pubDate>Wed, 08 May 2019 13:22:25 &#43;0800</pubDate>
+    <author> </author>
+    <guid>https://heysen.xyz/%E7%90%86%E8%A7%A3java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</guid>
+    <description><![CDATA[JMM(Java Memory Model),Java内存模型,它是一种Java虚拟机需要遵守的规范，定义了线程间如何在内存中正确地交互。JDK5以后的JMM规范在JS]]></description>
+</item></channel>
+</rss>

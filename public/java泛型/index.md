@@ -1,11 +1,5 @@
----
-date: "2025-04-14T21:06:15+08:00"
-draft: false
-title: "Java中的泛型"
-tags: ["Java基础"]
-categories: ["Java编程"]
-lightgallery: true
----
+# Java中的泛型
+
 # 概述
 
 泛型可以使得在编译期发现bug,从而增加代码稳定性。泛型使得在定义类、接口和方法时类型（类和接口）可以被参数化。就像方法声明中使用的形参，类型参数对于不同的输入可以重用代码。不同点在于形参的输入是值，类型参数的输入是类型。
@@ -621,7 +615,7 @@ List<? extends Number>  numList = intList;  // OK. List<? extends Integer> is a 
 
 下图显示了几个List类之间的关系:
 
-![](./通配符子类型关系.png)
+![](/images/Java/通配符子类型关系.png)
 
 ## 通配符捕获和辅助方法
 
@@ -1190,4 +1184,5 @@ public class Example {
     public void print(Set<Integer> intSet) { }
 }
 ```
+
 
