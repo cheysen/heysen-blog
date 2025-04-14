@@ -2,8 +2,8 @@
 date: "2019-07-22T23:11:15+08:00"
 draft: false
 title: "Java枚举类型介绍和使用"
-tags: ["Java"]
-categories: ["编程"]
+tags: ["Java基础"]
+categories: ["Java编程"]
 lightgallery: true
 ---
 ### 1. 枚举类型的介绍

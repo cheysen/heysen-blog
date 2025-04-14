@@ -2,8 +2,8 @@
 date: "2019-05-08T13:22:25+08:00"
 draft: false
 title: "简单理解Java内存模型"
-tags: ["Java"]
-categories: ["编程"]
+tags: ["Java内存模型"]
+categories: ["Java编程"]
 lightgallery: true
 ---
 JMM(Java Memory Model),Java内存模型,它是一种Java虚拟机需要遵守的规范，定义了线程间如何在内存中正确地交互。JDK5以后的JMM规范在[JSR-133](http://www.cs.umd.edu/~pugh/java/memoryModel/jsr133.pdf)中详细列出。
