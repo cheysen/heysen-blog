@@ -3,7 +3,14 @@
         <title>Java编程 - 分类 - H2oLo</title>
         <link>https://heysen.xyz/categories/java%E7%BC%96%E7%A8%8B/</link>
         <description>Java编程 - 分类 - H2oLo</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 14 Apr 2025 21:06:15 &#43;0800</lastBuildDate><atom:link href="https://heysen.xyz/categories/java%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 16 Apr 2025 20:19:15 &#43;0800</lastBuildDate><atom:link href="https://heysen.xyz/categories/java%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+    <title>Java8实战</title>
+    <link>https://heysen.xyz/java8%E5%AE%9E%E6%88%98/</link>
+    <pubDate>Wed, 16 Apr 2025 20:19:15 &#43;0800</pubDate>
+    <author> </author>
+    <guid>https://heysen.xyz/java8%E5%AE%9E%E6%88%98/</guid>
+    <description><![CDATA[1.基础知识 1.1 流处理 流是一系列数据项，一次只生成一项。可以想象成汽车组装流水线，尽管流水线实际上是一个序列，但不同加工站的运行一般是并行的。]]></description>
+</item><item>
     <title>Java中的泛型</title>
     <link>https://heysen.xyz/java%E6%B3%9B%E5%9E%8B/</link>
     <pubDate>Mon, 14 Apr 2025 21:06:15 &#43;0800</pubDate>
